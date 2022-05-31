@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html">
+
+<h:body>
+	<h1> Livro </h1>
+	
+	<h:form>
+		<fieldset>
+			<legend> Livro </legend>
+			<h:panelGrid columns="2">
+				<h:outputLabel for="titulo" value="Titulo"  > </h:outputLabel>
+				<h:inputText value="#{beanLivro.livro.titulo}" id="titulo" ></h:inputText>
+				<h:outputLabel for="isbn" value="ISBN" > </h:outputLabel>
+				<h:inputText value="#{beanLivro.livro.isbn}" id="isbn" ></h:inputText>
+				<h:outputLabel for="preco" value="Preço" > </h:outputLabel>
+				<h:inputText value="#{beanLivro.livro.preco}" id="preco" ></h:inputText>
+				<h:outputLabel for="data" value="Data de lançamento" > </h:outputLabel>
+				<h:inputText value="#{beanLivro.livro.dataLacamento}" id="data" ></h:inputText>
+				<h:commandButton value="Gravar" action="#{beanLivro.gravar}" ></h:commandButton>	
+			</h:panelGrid>			
+				
+		</fieldset>
+
+	</h:form>
+</h:body>
+ 
+</html>
