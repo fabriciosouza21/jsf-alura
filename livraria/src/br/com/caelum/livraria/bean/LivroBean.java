@@ -2,8 +2,12 @@ package br.com.caelum.livraria.bean;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import br.com.caelum.livraria.dao.DAO;
 import br.com.caelum.livraria.modelo.Autor;
@@ -49,10 +53,12 @@ public class LivroBean {
 		System.out.println("Gravando livro " + this.livro.getTitulo());
 
 		if (livro.getAutores().isEmpty()) {
-			throw new RuntimeException("Livro deve ter pelo menos um Autor.");
+			FacesContext.getCurrentInstance().addMessage("autor", new  FacesMessage("o livro deve ter autor"));
+			return;
 		}
 
 		new DAO<Livro>(Livro.class).adiciona(this.livro);
+		this.livro = new Livro();
 	}
 	
 	public void gravarAutor() {
@@ -65,4 +71,16 @@ public class LivroBean {
 		return new DAO<Autor>(Autor.class).listaTodos();
 	}
 
+	public List<Livro> getTodoLivros(){
+		return new DAO<Livro>(Livro.class).listaTodos();
+	}
+	public void comecaComDigitoUm(FacesContext facesContext, UIComponent uiComponent, Object value) throws ValidatorException {
+		String valor = value.toString();
+		if(!valor.startsWith("1")) {
+			throw new ValidatorException( new FacesMessage("Deveria começar com 1") );
+		}
+		
+	}
+
+	
 }
