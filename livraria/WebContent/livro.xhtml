@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	>
 
 <h:body>
 	<h1>Novo Livro</h1>
@@ -25,8 +27,24 @@
 
 			</h:panelGrid>
 		</fieldset>
+		<fieldset>
+			<legend> Autor</legend>
+			<h:outputLabel id="autor" value="Autor"></h:outputLabel>
+			<h:selectOneMenu value="#{livroBean.autorId}" >
+				<f:selectItems value="#{livroBean.autores}" var="autor" itemLabel="#{autor.nome}" itemValue="#{autor.id}"></f:selectItems>
+			</h:selectOneMenu>
+			<h:commandButton  value="Gravar autor" action="#{livroBean.gravarAutor}" ></h:commandButton>
+			
+			<h:dataTable value="#{livroBean.autoresDoLivro}" var="autor" >
+				<h:column>
+					<h:outputText value="#{autor.nome}" ></h:outputText>
+				</h:column>
+			</h:dataTable>
+		</fieldset>
 
 		<h:commandButton value="Gravar" action="#{livroBean.gravar}" />
+
+		
 	</h:form>
 </h:body>
 
