@@ -54,8 +54,11 @@
 					<h:outputText value="#{autor.nome}" ></h:outputText>
 				</h:column>
 			</h:dataTable>
+			<br />
+			<h:commandLink value="Cadastra novo autor" action="#{livroBean.formAutor}" immediate="true" ></h:commandLink>
 		</fieldset>
 
+		
 		<h:commandButton value="Gravar" action="#{livroBean.gravar}" >
 			<f:ajax execute="@form"  render="@form :tabelaLivros" ></f:ajax>
 		</h:commandButton>
