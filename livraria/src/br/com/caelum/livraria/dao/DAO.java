@@ -22,6 +22,7 @@ public class DAO<T> {
 		em.getTransaction().begin();
 
 		// persiste o objeto
+		
 		em.persist(t);
 
 		// commita a transacao

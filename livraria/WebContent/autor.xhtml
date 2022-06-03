@@ -3,6 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	
 	>
 
 	<ui:composition template="_template.xhtml" >
@@ -15,12 +17,33 @@
 					<h:panelGrid columns="2">
 						<h:outputLabel value="Nome:" for="nome" />
 						<h:inputText id="nome" value="#{autorBean.autor.nome}" />
-						<h:commandButton value="Gravar" action="#{autorBean.gravar}" />
+						<h:commandButton  value="Gravar" action="#{autorBean.gravar}">
+						</h:commandButton>
 					</h:panelGrid>
 				</fieldset>
 			</h:form>
+			<br/>
+			<h:form id="formAutores" >
+				<h:dataTable id="autores" value="#{autorBean.todosAutores}"  var="autor" >
+				<h:column>
+					<h:outputText value="#{autor.nome}">			
+					</h:outputText>
+				</h:column>
+				<h:column>
+				  <f:facet name="header">Alterar</f:facet>
+				    <h:commandLink value="alterar" action="#{autorBean.alterar(autor)}" ></h:commandLink>
+				  </h:column>
+				  
+				  <h:column>
+				  <f:facet name="header">Remover</f:facet>
+				    <h:commandLink value="remover" action="#{autorBean.remover(autor)}" ></h:commandLink>
+				  </h:column>
+				
+			</h:dataTable>
+			</h:form>	
+			
 		</ui:define>
-		<ui:define name="footer"> Novo autor </ui:define>
+
 	</ui:composition>
 
 	
